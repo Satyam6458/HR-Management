@@ -862,6 +862,27 @@ app.get('/employee/:id/leavebalance', (req, res) => {
     }
   });
 });
+// Route to get all departments
+app.get('/departments', (req, res) => {
+  db.query('SELECT * FROM departments', (err, results) => {
+    if (err) {
+      console.error('Error fetching departments:', err);
+      return res.status(500).json({ success: false, message: 'Failed to fetch departments' });
+    }
+    res.status(200).json(results);
+  });
+});
+
+// Route to get all positions
+app.get('/positions', (req, res) => {
+  db.query('SELECT * FROM positions', (err, results) => {
+    if (err) {
+      console.error('Error fetching positions:', err);
+      return res.status(500).json({ success: false, message: 'Failed to fetch positions' });
+    }
+    res.status(200).json(results);
+  });
+});
 
 
 // Other routes and configurations...
