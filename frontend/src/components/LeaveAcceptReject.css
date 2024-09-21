@@ -1,0 +1,82 @@
+.leave-accept-reject-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.leave-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.leave-table th,
+.leave-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.leave-table th {
+    background-color: #f2f2f2;
+}
+
+/* Container for the buttons */
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between the buttons */
+    align-items: center; /* Align buttons vertically centered */
+}
+
+/* Styles for the approve and reject buttons */
+.approve-button,
+.reject-button {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.3s;
+    font-size: 18px; /* Adjust size of icons */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+}
+
+.approve-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.reject-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.approve-button:hover,
+.reject-button:hover {
+    opacity: 0.8;
+}
+
+.approve-button:disabled,
+.reject-button:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.6; /* Set a lower opacity to create a blurred/faded effect */
+}
+
+.search-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.search-input {
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

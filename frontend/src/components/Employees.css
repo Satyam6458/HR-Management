@@ -1,0 +1,96 @@
+.employees-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-input {
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.add-employee-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.add-employee-button:hover {
+  background-color: #218838;
+}
+
+.employee-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.employee-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: white;
+}
+
+.employee-actions .edit-button {
+  background-color: #007bff;
+}
+
+.employee-actions .edit-button:hover {
+  background-color: #0056b3;
+}
+
+.employee-actions .delete-button {
+  background-color: #dc3545;
+}
+
+.employee-actions .delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Modal styling */
+.employee-form input,
+.employee-form select,
+.employee-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.employee-form button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.employee-form button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+.employee-form .cancel-button {
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.employee-form .cancel-button:hover {
+  background-color: #5a6268;
+}

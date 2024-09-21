@@ -1,0 +1,142 @@
+/* Departments Container */
+.departments-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .departments-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .departments-container .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .departments-container .add-department-button {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .departments-container .add-department-button:hover {
+    background-color: #218838;
+  }
+  
+  .departments-container .department-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .departments-container .edit-button,
+  .departments-container .delete-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .departments-container .edit-button {
+    background-color: #007bff;
+  }
+  
+  .departments-container .edit-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .departments-container .delete-button {
+    background-color: #dc3545;
+  }
+  
+  .departments-container .delete-button:hover {
+    background-color: #c82333;
+  }
+  
+  .departments-container .cancel-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .departments-container .cancel-button:hover {
+    background-color: #5a6268;
+  }
+  
+  /* Modal styling */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .modal-content .department-form input,
+  .modal-content .department-form textarea {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .modal-content .department-form button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .modal-content .department-form button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  
