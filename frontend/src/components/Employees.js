@@ -8,12 +8,16 @@ import './Employees.css';
 function Employees() {
   const [employees, setEmployees] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [departments, setDepartments] = useState([]);
+  const [positions, setPositions] = useState([]);
   const [newEmployee, setNewEmployee] = useState({ name: '', position: '', email: '', phone: '', department: '', password: '' });
   const [editingEmployee, setEditingEmployee] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchEmployees();
+    fetchDepartments();
+    fetchPositions();
   }, []);
 
   const fetchEmployees = async () => {
@@ -22,6 +26,24 @@ function Employees() {
       setEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employees:', error);
+    }
+  };
+
+  const fetchDepartments = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/departments');
+      setDepartments(response.data);
+    } catch (error) {
+      console.error('Error fetching departments:', error);
+    }
+  };
+
+  const fetchPositions = async () => {
+    try {
+      const response = await axios.get('http://localhost:5000/positions');
+      setPositions(response.data);
+    } catch (error) {
+      console.error('Error fetching positions:', error);
     }
   };
 
@@ -162,14 +184,22 @@ function Employees() {
             onChange={handleChange}
             required
           />
-          <input
-            type="text"
-            name="position"
-            placeholder="Position"
-            value={newEmployee.position}
-            onChange={handleChange}
-            required
-          />
+          <select name="department" value={newEmployee.department} onChange={handleChange} required>
+            <option value="">Select Department</option>
+            {departments.map((department) => (
+              <option key={department.id} value={department.name}>
+                {department.name}
+              </option>
+            ))}
+          </select>
+          <select name="position" value={newEmployee.position} onChange={handleChange} required>
+            <option value="">Select Position</option>
+            {positions.map((position) => (
+              <option key={position.id} value={position.name}>
+                {position.name}
+              </option>
+            ))}
+          </select>
           <input
             type="email"
             name="email"
@@ -183,14 +213,6 @@ function Employees() {
             name="phone"
             placeholder="Phone"
             value={newEmployee.phone}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="department"
-            placeholder="Department"
-            value={newEmployee.department}
             onChange={handleChange}
             required
           />
