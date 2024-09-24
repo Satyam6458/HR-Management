@@ -1,119 +1,84 @@
-.profile-container {
-  max-width: 800px;
-  margin: 0 auto;
+.enhanced-profile {
+  padding: 20px;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.profile-cover-photo img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+  border-radius: 10px;
+  width: 90%;
+  margin: auto;
 }
 
 .profile-header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px;
-}
-
-.profile-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 .profile-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
 }
 
-.profile-header-info {
-  flex-grow: 1;
-}
-
-.profile-name {
+.profile-info h1 {
+  font-size: 1.5em;
   margin: 0;
-  font-size: 1.8em;
-  color: #333;
 }
 
-.profile-bio {
-  margin: 10px 0;
-  font-size: 1em;
-  color: #666;
+.profile-actions button {
+  margin-left: 10px;
 }
 
-.profile-edit-button {
-  padding: 10px 20px;
-  font-size: 1em;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.profile-edit-form,
-.profile-details {
-  padding: 20px;
-}
-
-.profile-item {
-  margin-bottom: 15px;
-}
-
-.profile-item label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.profile-input {
-  width: 100%;
-  padding: 8px;
-  font-size: 1em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.profile-input[type="file"] {
-  border: none;
-}
-
-.profile-buttons {
+.profile-details .row {
   display: flex;
   justify-content: space-between;
 }
 
-.profile-save-button,
-.profile-cancel-button {
-  padding: 10px 20px;
-  font-size: 1em;
+.column {
+  flex: 0 0 45%;
+}
+
+.detail-item {
+  margin-bottom: 15px;
+}
+
+.detail-item label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.detail-item input {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.btn {
+  padding: 10px;
+  font-size: 0.9em;
+  border-radius: 5px;
   cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  color: #fff;
 }
 
-.profile-save-button {
-  background-color: #28a745;
+.btn-danger { background-color: #dc3545; color: white; }
+.btn-primary { background-color: #007bff; color: white; }
+.btn-secondary { background-color: #6c757d; color: white; }
+.btn-warning { background-color: #ffc107; color: black; }
+/* Styling for Gender Radio Buttons */
+.gender-options {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
 }
 
-.profile-cancel-button {
-  background-color: #dc3545;
+.gender-options label {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
 }
 
-.profile-loading,
-.profile-error {
-  text-align: center;
-  font-size: 1.5em;
-  color: #555;
+.gender-options input[type="radio"] {
+  margin-right: 5px;
 }

@@ -9,6 +9,7 @@ const app = express();
 const port = 5000;
 const SECRET_KEY = 'your_secret_key'; // Replace with your actual secret key
 const upload = multer({ dest: 'uploads/' });
+app.use('/uploads', express.static('uploads'));
 
 // MySQL connection
 const db = mysql.createConnection({
@@ -459,25 +460,37 @@ app.get('/profile/:id', (req, res) => {
 
 app.put('/profile/:id', upload.single('photo'), (req, res) => {
   const { id } = req.params;
-  const { name, position, email, phone, department, joiningdate, address, password } = req.body;
-  const photo = req.file ? req.file.path : null;
+  const { name, position, email, phone, department, joiningdate, address, password, maritalStatus, gender } = req.body;
+  const newPhoto = req.file ? req.file.path : null;
 
-  const updateQuery = `
-    UPDATE employees 
-    SET name = ?, position = ?, email = ?, phone = ?, department = ?, joiningdate = ?, address = ?, password = ?, photo = ? 
-    WHERE id = ?
-  `;
-  
-  const values = [name, position, email, phone, department, joiningdate, address, password, photo, id];
-  
-  db.query(updateQuery, values, (err, results) => {
-    if (err) {
-      console.error('Error updating profile:', err);
-      return res.status(500).json({ success: false, message: 'Failed to update profile' });
+  const updateFields = {
+    name,
+    position,
+    email,
+    phone,
+    department,
+    joiningdate,
+    address,
+    maritalStatus,
+    gender,
+    ...(newPhoto && { photo: newPhoto }),
+  };
+
+  // Update query
+  const sql = `UPDATE employees SET ? WHERE id = ?`;
+  db.query(sql, [updateFields, id], (error, results) => {
+    if (error) {
+      console.error('Error updating profile:', error);
+      return res.status(500).json({ message: 'Error updating profile' });
     }
-    res.status(200).json({ success: true, message: 'Profile updated successfully', data: req.body });
+
+    res.status(200).json({ message: 'Profile updated successfully' });
   });
 });
+
+
+
+
 
 // Get leave types
 app.get('/leavetypes', (req, res) => {
