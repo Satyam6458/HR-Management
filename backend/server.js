@@ -7,9 +7,10 @@ const cors = require('cors');
 const multer = require('multer');
 const app = express();
 const port = process.env.PORT || 5000; // Use environment port if available
-const SECRET_KEY = process.env.SECRET_KEY;
+// const SECRET_KEY = process.env.SECRET_KEY;
 const upload = multer({ dest: 'uploads/' });
 app.use('/uploads', express.static('uploads'));
+const SECRET_KEY = process.env.SECRET_KEY || 'default_secret_key'; // Fallback to default
 
 // MySQL connection
 const db = mysql.createConnection({
