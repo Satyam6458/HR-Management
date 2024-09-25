@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const multer = require('multer');
-
+const BASE_URL = process.env.BASE_URL
 const app = express();
 const port = process.env.PORT || 5000; // Use environment port if available
 const SECRET_KEY = process.env.SECRET_KEY || 'default_secret_key'; // Fallback to default
