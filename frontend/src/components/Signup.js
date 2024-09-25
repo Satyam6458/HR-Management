@@ -12,7 +12,7 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/signup', {
+      const response = await axios.post('https://hr-management-ps0b.onrender.com/signup', {
         name,
         email,
         password,
@@ -56,7 +56,7 @@ function Signup() {
         />
         <button type="submit">Signup</button>
       </form>
-      <p>Already have an account? <a href="/login">Sign in here</a></p>
+      <p>Already have an account? <a href="https://hr-management-ps0b.onrender.com/login">Sign in here</a></p>
     </div>
   );
 }
