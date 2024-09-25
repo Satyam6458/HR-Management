@@ -18,7 +18,7 @@ function Departments() {
 
   const fetchDepartments = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/departments');
+      const response = await axios.get('https://hr-management-ps0b.onrender.com/departments');
       setDepartments(response.data);
     } catch (error) {
       console.error('Error fetching departments:', error);
@@ -38,10 +38,10 @@ function Departments() {
     e.preventDefault();
     try {
       if (editingDepartment) {
-        await axios.put(`http://localhost:5000/departments/${editingDepartment.id}`, newDepartment);
+        await axios.put(`https://hr-management-ps0b.onrender.com/departments/${editingDepartment.id}`, newDepartment);
         setEditingDepartment(null);
       } else {
-        await axios.post('http://localhost:5000/departments', newDepartment);
+        await axios.post('https://hr-management-ps0b.onrender.com/departments', newDepartment);
       }
       setNewDepartment({ name: '', description: '' });
       fetchDepartments();
@@ -68,7 +68,7 @@ function Departments() {
     .then(async (willDelete) => {
       if (willDelete) {
         try {
-          await axios.delete(`http://localhost:5000/departments/${id}`);
+          await axios.delete(`https://hr-management-ps0b.onrender.com/departments/${id}`);
           fetchDepartments();
           swal("Poof! The department's data has been deleted!", {
             icon: "success",

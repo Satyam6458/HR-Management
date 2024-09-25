@@ -22,7 +22,7 @@ function Employees() {
 
   const fetchEmployees = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/employees');
+      const response = await axios.get('https://hr-management-ps0b.onrender.com/employees');
       setEmployees(response.data);
     } catch (error) {
       console.error('Error fetching employees:', error);
@@ -31,7 +31,7 @@ function Employees() {
 
   const fetchDepartments = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/departments');
+      const response = await axios.get('https://hr-management-ps0b.onrender.com/departments');
       setDepartments(response.data);
     } catch (error) {
       console.error('Error fetching departments:', error);
@@ -40,7 +40,7 @@ function Employees() {
 
   const fetchPositions = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/positions');
+      const response = await axios.get('https://hr-management-ps0b.onrender.com/positions');
       setPositions(response.data);
     } catch (error) {
       console.error('Error fetching positions:', error);
@@ -60,10 +60,10 @@ function Employees() {
     e.preventDefault();
     try {
       if (editingEmployee) {
-        await axios.put(`http://localhost:5000/employees/${editingEmployee.id}`, newEmployee);
+        await axios.put(`https://hr-management-ps0b.onrender.com/employees/${editingEmployee.id}`, newEmployee);
         setEditingEmployee(null);
       } else {
-        await axios.post('http://localhost:5000/employees', newEmployee);
+        await axios.post('https://hr-management-ps0b.onrender.com/employees', newEmployee);
       }
       setNewEmployee({ name: '', position: '', email: '', phone: '', department: '', password: '' });
       fetchEmployees();
@@ -90,7 +90,7 @@ function Employees() {
     .then(async (willDelete) => {
       if (willDelete) {
         try {
-          await axios.delete(`http://localhost:5000/employees/${id}`);
+          await axios.delete(`https://hr-management-ps0b.onrender.com/employees/${id}`);
           fetchEmployees();
           swal("Poof! The employee's data has been deleted!", {
             icon: "success",

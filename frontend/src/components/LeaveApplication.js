@@ -13,7 +13,7 @@ function LeaveApplication({ employee }) {
   useEffect(() => {
     const fetchLeaveTypes = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/leavetypes');
+        const response = await axios.get('https://hr-management-ps0b.onrender.com/leavetypes');
         setLeaveTypes(response.data);
       } catch (error) {
         console.error('Error fetching leave types:', error);
@@ -26,7 +26,7 @@ function LeaveApplication({ employee }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/leaveapplication', {
+      const response = await axios.post('https://hr-management-ps0b.onrender.com/leaveapplication', {
         employeeId: employee.id,
         startDate,
         endDate,

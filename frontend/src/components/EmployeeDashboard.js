@@ -29,7 +29,7 @@ function EmployeeDashboard({ employee, setEmployee }) {
   // Fetch leave balance data
   useEffect(() => {
     if (employee) {
-      axios.get(`http://localhost:5000/employee/${employee.id}/leavebalance`)
+      axios.get(`https://hr-management-ps0b.onrender.com/employee/${employee.id}/leavebalance`)
         .then(response => {
           setLeaveBalance(response.data);
         })

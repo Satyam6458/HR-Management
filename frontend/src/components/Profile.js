@@ -18,13 +18,13 @@ function Profile({ employee }) {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/profile/${employee.id}`);
+        const response = await axios.get(`https://hr-management-ps0b.onrender.com/profile/${employee.id}`);
         setProfile(response.data);
 
-        const departmentsResponse = await axios.get('http://localhost:5000/departments');
+        const departmentsResponse = await axios.get('https://hr-management-ps0b.onrender.com/departments');
         setDepartments(departmentsResponse.data);
 
-        const positionsResponse = await axios.get('http://localhost:5000/positions');
+        const positionsResponse = await axios.get('https://hr-management-ps0b.onrender.com/positions');
         setPositions(positionsResponse.data);
 
         if (response.data.joiningdate) {
@@ -70,12 +70,12 @@ function Profile({ employee }) {
     });
   
     try {
-      await axios.put(`http://localhost:5000/profile/${profile.id}`, formData, {
+      await axios.put(`https://hr-management-ps0b.onrender.com/profile/${profile.id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Profile updated successfully');
   
-      const updatedProfile = await axios.get(`http://localhost:5000/profile/${profile.id}`);
+      const updatedProfile = await axios.get(`https://hr-management-ps0b.onrender.com/profile/${profile.id}`);
       setProfile(updatedProfile.data);
       setPreviewImage(null);
   
@@ -98,7 +98,7 @@ function Profile({ employee }) {
       <div className="profile-header">
         <div className="profile-photo">
           <img
-            src={previewImage ? previewImage : (profile.photo ? `http://localhost:5000/${profile.photo}?${new Date().getTime()}` : '/default-profile.png')}
+            src={previewImage ? previewImage : (profile.photo ? `https://hr-management-ps0b.onrender.com/${profile.photo}?${new Date().getTime()}` : '/default-profile.png')}
             alt="Employee"
             style={{ width: '150px', height: '150px', borderRadius: '50%' }}
           />

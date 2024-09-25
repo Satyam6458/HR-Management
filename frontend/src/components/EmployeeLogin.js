@@ -14,7 +14,7 @@ function EmployeeLogin({ setEmployee }) {
     setError(null); // Reset the error state
     try {
       console.log('Attempting login with email:', email);
-      const response = await axios.post('http://localhost:5000/EmployeeLogin', { email, password });
+      const response = await axios.post('https://hr-management-ps0b.onrender.com/EmployeeLogin', { email, password });
       console.log('Response from server:', response);
 
       if (response.data.success) {

@@ -18,7 +18,7 @@ function LeaveTypes() {
 
   const fetchLeaveTypes = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/leave-types');
+      const response = await axios.get('https://hr-management-ps0b.onrender.com/leave-types');
       setLeaveTypes(response.data);
     } catch (error) {
       console.error('Error fetching leave types:', error);
@@ -38,10 +38,10 @@ function LeaveTypes() {
     e.preventDefault();
     try {
       if (editingLeaveType) {
-        await axios.put(`http://localhost:5000/leave-types/${editingLeaveType.id}`, newLeaveType);
+        await axios.put(`https://hr-management-ps0b.onrender.com/leave-types/${editingLeaveType.id}`, newLeaveType);
         setEditingLeaveType(null);
       } else {
-        await axios.post('http://localhost:5000/leave-types', newLeaveType);
+        await axios.post('https://hr-management-ps0b.onrender.com/leave-types', newLeaveType);
       }
       setNewLeaveType({ name: '', description: '' });
       fetchLeaveTypes();
@@ -68,7 +68,7 @@ function LeaveTypes() {
     .then(async (willDelete) => {
       if (willDelete) {
         try {
-          await axios.delete(`http://localhost:5000/leave-types/${id}`);
+          await axios.delete(`https://hr-management-ps0b.onrender.com/leave-types/${id}`);
           fetchLeaveTypes();
           swal("Poof! The leave type's data has been deleted!", {
             icon: "success",

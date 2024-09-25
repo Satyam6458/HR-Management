@@ -14,7 +14,7 @@ function LeaveHistory({ employee }) {
   useEffect(() => {
     const fetchLeaveHistory = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/leavehistory/${employee.id}`);
+        const response = await axios.get(`https://hr-management-ps0b.onrender.com/leavehistory/${employee.id}`);
         setLeaveHistory(response.data);
         setFilteredLeaves(response.data);
         setLoading(false);
@@ -40,7 +40,7 @@ function LeaveHistory({ employee }) {
       });
 
       if (result.isConfirmed) {
-        const response = await axios.put(`http://localhost:5000/withdrawLeave/${leaveId}`);
+        const response = await axios.put(`https://hr-management-ps0b.onrender.com/withdrawLeave/${leaveId}`);
         if (response.data.success) {
           setLeaveHistory(response.data.updatedLeaves);
           setFilteredLeaves(response.data.updatedLeaves);

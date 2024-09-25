@@ -18,7 +18,7 @@ function Positions() {
 
   const fetchPositions = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/positions');
+      const response = await axios.get('https://hr-management-ps0b.onrender.com/positions');
       setPositions(response.data);
     } catch (error) {
       console.error('Error fetching positions:', error);
@@ -38,10 +38,10 @@ function Positions() {
     e.preventDefault();
     try {
       if (editingPosition) {
-        await axios.put(`http://localhost:5000/positions/${editingPosition.id}`, newPosition);
+        await axios.put(`https://hr-management-ps0b.onrender.com/positions/${editingPosition.id}`, newPosition);
         setEditingPosition(null);
       } else {
-        await axios.post('http://localhost:5000/positions', newPosition);
+        await axios.post('https://hr-management-ps0b.onrender.com/positions', newPosition);
       }
       setNewPosition({ name: '', description: '' });
       fetchPositions();
@@ -68,7 +68,7 @@ function Positions() {
     .then(async (willDelete) => {
       if (willDelete) {
         try {
-          await axios.delete(`http://localhost:5000/positions/${id}`);
+          await axios.delete(`https://hr-management-ps0b.onrender.com/positions/${id}`);
           fetchPositions();
           swal("Poof! The position's data has been deleted!", {
             icon: "success",

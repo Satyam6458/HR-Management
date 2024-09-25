@@ -14,7 +14,7 @@ function LeaveAcceptReject() {
   useEffect(() => {
     const fetchLeaves = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/leaves');
+        const response = await axios.get('https://hr-management-ps0b.onrender.com/leaves');
         setLeaves(response.data);
         sortAndFilterLeaves(response.data, search); // Ensure the search is included in sorting/filtering
       } catch (error) {
@@ -39,7 +39,7 @@ function LeaveAcceptReject() {
       });
 
       if (result.isConfirmed) {
-        const response = await axios.put(`http://localhost:5000/leaves/${leaveId}`, { status });
+        const response = await axios.put(`https://hr-management-ps0b.onrender.com/leaves/${leaveId}`, { status });
         if (response.data.success) {
           const updatedLeaves = leaves.map((leave) =>
             leave.id === leaveId ? { ...leave, status } : leave

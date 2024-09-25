@@ -36,7 +36,7 @@ function Holidays() {
 
   const fetchHolidays = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/holidays');
+      const response = await axios.get('https://hr-management-ps0b.onrender.com/holidays');
       setHolidays(response.data);
     } catch (error) {
       console.error('Error fetching holidays:', error);
@@ -64,10 +64,10 @@ function Holidays() {
         date: newHoliday.date ? newHoliday.date.toISOString().split('T')[0] : null,
       };
       if (editingHoliday) {
-        await axios.put(`http://localhost:5000/holidays/${editingHoliday.id}`, holidayData);
+        await axios.put(`https://hr-management-ps0b.onrender.com/holidays/${editingHoliday.id}`, holidayData);
         setEditingHoliday(null);
       } else {
-        await axios.post('http://localhost:5000/holidays', holidayData);
+        await axios.post('https://hr-management-ps0b.onrender.com/holidays', holidayData);
       }
       setNewHoliday({ name: '', date: null, description: '' });
       fetchHolidays();
@@ -94,7 +94,7 @@ function Holidays() {
     .then(async (willDelete) => {
       if (willDelete) {
         try {
-          await axios.delete(`http://localhost:5000/holidays/${id}`);
+          await axios.delete(`https://hr-management-ps0b.onrender.com/holidays/${id}`);
           fetchHolidays();
           swal("Poof! The holiday's data has been deleted!", {
             icon: "success",
