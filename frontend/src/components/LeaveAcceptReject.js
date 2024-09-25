@@ -16,14 +16,15 @@ function LeaveAcceptReject() {
       try {
         const response = await axios.get('http://localhost:5000/leaves');
         setLeaves(response.data);
-        sortAndFilterLeaves(response.data, search);
+        sortAndFilterLeaves(response.data, search); // Ensure the search is included in sorting/filtering
       } catch (error) {
         console.error('Error fetching leaves:', error);
       }
     };
-
+  
     fetchLeaves();
-  }, []);
+  }, [search]); // Add 'search' as a dependency
+  
 
   // Function to update the status of a leave application
   const updateStatus = async (leaveId, status) => {

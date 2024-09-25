@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Profile.css'; // Ensure this is for your custom styling
+import './Profile.css'; 
 
 function Profile({ employee }) {
   const [profile, setProfile] = useState({});
@@ -27,7 +27,6 @@ function Profile({ employee }) {
         const positionsResponse = await axios.get('http://localhost:5000/positions');
         setPositions(positionsResponse.data);
 
-        // Disable joining date if it's already set
         if (response.data.joiningdate) {
           setJoiningDateEditable(false);
         }
@@ -61,7 +60,7 @@ function Profile({ employee }) {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-
+  
     Object.keys(profile).forEach((key) => {
       if (key === "photo" && typeof profile.photo !== "string") {
         formData.append(key, profile.photo);
@@ -69,42 +68,37 @@ function Profile({ employee }) {
         formData.append(key, profile[key]);
       }
     });
-
+  
     try {
-      const response = await axios.put(`http://localhost:5000/profile/${profile.id}`, formData, {
+      await axios.put(`http://localhost:5000/profile/${profile.id}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Profile updated successfully');
-
-      // Fetch the updated profile after updating
+  
       const updatedProfile = await axios.get(`http://localhost:5000/profile/${profile.id}`);
       setProfile(updatedProfile.data);
       setPreviewImage(null);
-
+  
       if (updatedProfile.data.joiningdate) {
         setJoiningDateEditable(false);
       }
     } catch (err) {
-      if (err.response) {
-        console.error('Error updating profile:', err.response.data);
-        alert(`Failed to update profile: ${err.response.data.message || err.response.data}`);
-      } else {
-        console.error('Error updating profile:', err);
-        alert('Failed to update profile: Network error');
-      }
+      const errorMessage = err.response?.data?.message || 'Network error or server issue';
+      alert(`Failed to update profile: ${errorMessage}`);
+      console.error('Error updating profile:', err);
     }
   };
+  
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;
 
   return (
     <form className="enhanced-profile" onSubmit={handleFormSubmit}>
-      {/* Profile Header */}
       <div className="profile-header">
         <div className="profile-photo">
           <img
-            src={previewImage ? previewImage : `http://localhost:5000/${profile.photo}?${new Date().getTime()}`}
+            src={previewImage ? previewImage : (profile.photo ? `http://localhost:5000/${profile.photo}?${new Date().getTime()}` : '/default-profile.png')}
             alt="Employee"
             style={{ width: '150px', height: '150px', borderRadius: '50%' }}
           />
@@ -120,7 +114,6 @@ function Profile({ employee }) {
         </div>
       </div>
 
-      {/* Profile Details */}
       <div className="profile-details">
         <div className="row">
           <div className="column">
@@ -147,7 +140,7 @@ function Profile({ employee }) {
                 <input
                   type={passwordVisible ? "text" : "password"}
                   name="password"
-                  value={profile.password || ''}
+                  value={profile.password || ''}  // Ensure fallback for null/undefined
                   onChange={handleInputChange}
                 />
                 <span
@@ -174,7 +167,7 @@ function Profile({ employee }) {
               <input
                 type="date"
                 name="joiningdate"
-                value={profile.joiningdate || ''}  // Use yyyy-mm-dd format
+                value={profile.joiningdate ? profile.joiningdate.split('T')[0] : ''}  // Ensure yyyy-mm-dd format
                 onChange={handleInputChange}
                 disabled={!isJoiningDateEditable}
               />
