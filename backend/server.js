@@ -41,25 +41,24 @@ app.get('/', (req, res) => {
 const bcrypt = require('bcrypt');
 
 // User signup
-app.post('/signup', async (req, res) => {
+app.post('/signup', (req, res) => {
   const { name, email, password } = req.body;
-
-  // Hash the password
-  const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
-
-  // Insert user into the database
+  console.log('Signup Request Body:', req.body);
+  // Insert user into the database (storing password as plain text, not recommended)
   db.query(
     'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-    [name, email, hashedPassword],
+    [name, email, password],
     (err, results) => {
       if (err) {
-        console.error('Error during signup:', err);
+        console.error('Error during signup:', err);  // Log the error
         return res.status(500).json({ success: false, message: 'Signup failed' });
+        
       }
       res.status(201).json({ success: true, message: 'Signup successful' });
     }
   );
 });
+
 
 
 // User login
