@@ -1,4 +1,4 @@
-// server.js
+require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
@@ -6,17 +6,17 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const multer = require('multer');
 const app = express();
-const port = 5000;
-const SECRET_KEY = 'your_secret_key'; // Replace with your actual secret key
+const port = process.env.PORT || 5000; // Use environment port if available
+const SECRET_KEY = process.env.SECRET_KEY;
 const upload = multer({ dest: 'uploads/' });
 app.use('/uploads', express.static('uploads'));
 
 // MySQL connection
 const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '', // Replace with your MySQL password
-  database: 'auth_system',
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
 });
 
 db.connect((err) => {
