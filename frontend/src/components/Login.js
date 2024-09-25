@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom'; // Import Link
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -10,7 +10,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://hr-management-ps0b.onrender.com/login', { email, password }); // Updated URL
+      const response = await axios.post('https://hr-management-ps0b.onrender.com/login', { email, password });
       if (response.data.success) {
         alert('Login successful!');
         localStorage.setItem('token', response.data.token);
@@ -48,7 +48,7 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
-      <p>Don't have an account? <a href="/signup">Sign up here.</a></p>
+      <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
     </div>
   );
 }
