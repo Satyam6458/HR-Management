@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const multer = require('multer');
-const BASE_URL = process.env.BASE_URL
+const BASE_URL = process.env.BASE_URL;
 const app = express();
 const port = process.env.PORT || 5000; // Use environment port if available
 const SECRET_KEY = process.env.SECRET_KEY || 'default_secret_key'; // Fallback to default
@@ -13,21 +13,18 @@ const SECRET_KEY = process.env.SECRET_KEY || 'default_secret_key'; // Fallback t
 const upload = multer({ dest: 'uploads/' });
 app.use('/uploads', express.static('uploads'));
 
-// MySQL connection
-const db = mysql.createConnection({
+// MySQL connection pool (instead of single connection)
+const db = mysql.createPool({
   host: process.env.DB_HOST || 'mysql-satyam.alwaysdata.net', // Fallback to the AlwaysData host
   user: process.env.DB_USER || 'satyam', // Replace with your AlwaysData username
   password: process.env.DB_PASSWORD || 'S@ty@m6458', // Replace with your AlwaysData password
   database: process.env.DB_NAME || 'satyam_hr', // AlwaysData database name
   port: 3306, // Default MySQL port
+  connectionLimit: 10, // Adjust the pool size according to your server capacity
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error('Database connection failed:', err.stack);
-    return;
-  }
-  console.log('Connected to the database.');
+db.on('error', (err) => {
+  console.error('Database error:', err);
 });
 
 app.use(cors());
