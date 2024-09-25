@@ -13,11 +13,11 @@ app.use('/uploads', express.static('uploads'));
 
 // MySQL connection
 const db = mysql.createConnection({
-  port: process.env.PORT,
-  host: process.env.DB_HOST,
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DBNAME,
+  host: process.env.DB_HOST,      // Environment variable for host
+  user: process.env.DB_USER,      // Environment variable for DB user
+  password: process.env.DB_PASSWORD, // Environment variable for DB password
+  database: process.env.DB_NAME,  // Environment variable for DB name
+  port: 3306,                     // Use default MySQL port (3306) or your custom port
 });
 
 db.connect((err) => {
@@ -30,6 +30,11 @@ db.connect((err) => {
 
 app.use(cors());
 app.use(bodyParser.json());
+
+// Define a root route to handle the base URL
+app.get('/', (req, res) => {
+  res.send('HR Management API is running');
+});
 
 // User signup
 app.post('/signup', (req, res) => {
