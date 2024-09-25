@@ -38,14 +38,19 @@ app.get('/', (req, res) => {
   res.send('HR Management API is running');
 });
 
+const bcrypt = require('bcrypt');
+
 // User signup
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
 
-  // Insert user into the database (storing password as plain text, not recommended)
+  // Hash the password
+  const hashedPassword = await bcrypt.hash(password, 10); // 10 is the salt rounds
+
+  // Insert user into the database
   db.query(
     'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-    [name, email, password],
+    [name, email, hashedPassword],
     (err, results) => {
       if (err) {
         console.error('Error during signup:', err);
@@ -56,6 +61,7 @@ app.post('/signup', (req, res) => {
   );
 });
 
+
 // User login
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
@@ -64,7 +70,7 @@ app.post('/login', (req, res) => {
   db.query(
     'SELECT * FROM users WHERE email = ?',
     [email],
-    (err, results) => {
+    async (err, results) => {
       if (err) {
         console.error('Error during login:', err);
         return res.status(500).json({ success: false, message: 'Login failed' });
@@ -74,8 +80,10 @@ app.post('/login', (req, res) => {
       }
 
       const user = results[0];
-      // Check if the entered password matches the stored password
-      if (password !== user.password) {
+      
+      // Compare entered password with hashed password
+      const match = await bcrypt.compare(password, user.password);
+      if (!match) {
         return res.status(401).json({ success: false, message: 'Incorrect password' });
       }
 
@@ -86,6 +94,7 @@ app.post('/login', (req, res) => {
     }
   );
 });
+
 
 // Get all employees
 app.get('/employees', (req, res) => {
