@@ -13,14 +13,15 @@ const SECRET_KEY = process.env.SECRET_KEY || 'default_secret_key'; // Fallback t
 const upload = multer({ dest: 'uploads/' });
 app.use('/uploads', express.static('uploads'));
 
-// MySQL connection pool (instead of single connection)
+// MySQL connection pool
 const db = mysql.createPool({
   host: process.env.DB_HOST || 'mysql-satyam.alwaysdata.net', // Fallback to the AlwaysData host
   user: process.env.DB_USER || 'satyam', // Replace with your AlwaysData username
   password: process.env.DB_PASSWORD || 'S@ty@m6458', // Replace with your AlwaysData password
   database: process.env.DB_NAME || 'satyam_hr', // AlwaysData database name
   port: 3306, // Default MySQL port
-  connectionLimit: 10, // Adjust the pool size according to your server capacity
+  connectionLimit: 10,
+  connectTimeout: 10000, // 10 seconds
 });
 
 db.on('error', (err) => {
