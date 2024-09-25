@@ -5,20 +5,21 @@ const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const multer = require('multer');
+
 const app = express();
 const port = process.env.PORT || 5000; // Use environment port if available
-// const SECRET_KEY = process.env.SECRET_KEY;
+const SECRET_KEY = process.env.SECRET_KEY || 'default_secret_key'; // Fallback to default
+
 const upload = multer({ dest: 'uploads/' });
 app.use('/uploads', express.static('uploads'));
-const SECRET_KEY = process.env.SECRET_KEY || 'default_secret_key'; // Fallback to default
 
 // MySQL connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST,      // Environment variable for host
-  user: process.env.DB_USER,      // Environment variable for DB user
-  password: process.env.DB_PASSWORD, // Environment variable for DB password
-  database: process.env.DB_NAME,  // Environment variable for DB name
-  port: 3306,                     // Use default MySQL port (3306) or your custom port
+  host: process.env.DB_HOST || 'mysql-satyam.alwaysdata.net', // Fallback to the AlwaysData host
+  user: process.env.DB_USER || 'satyam', // Replace with your AlwaysData username
+  password: process.env.DB_PASSWORD || 'S@ty@m6458', // Replace with your AlwaysData password
+  database: process.env.DB_NAME || 'satyam_hr', // AlwaysData database name
+  port: 3306, // Default MySQL port
 });
 
 db.connect((err) => {
