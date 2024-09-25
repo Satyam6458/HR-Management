@@ -48,7 +48,7 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
-      <p>Don't have an account? <a href="/signup">Sign up here.</a></p>
+      <p>Don't have an account? <a href="https://hr-management-ps0b.onrender.com/signup">Sign up here.</a></p>
     </div>
   );
 }
