@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
 import './EmployeeLogin.css'; // Import the CSS for styling
 
 function EmployeeLogin({ setEmployee }) {
@@ -60,6 +60,7 @@ function EmployeeLogin({ setEmployee }) {
           <button type="submit" className="login-button">Login</button>
           {error && <div className="error-message">{error}</div>} {/* Display error */}
         </form>
+        <p>Admin Login <Link to="/login">Admin Login</Link></p>
       </div>
     </div>
   );

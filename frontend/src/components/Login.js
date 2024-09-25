@@ -48,7 +48,7 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
-      <p>Don't have an account? <Link to="/signup">Sign up here</Link></p>
+      <p>Employee Login <Link to="/employeelogin">Employee Login</Link></p>
     </div>
   );
 }
