@@ -42,18 +42,18 @@ app.get('/', (req, res) => {
 app.post('/signup', (req, res) => {
   const { name, email, password } = req.body;
   console.log('Signup Request Body:', req.body);
-
+  
   // Insert user into the database
   db.query(
-    'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
-    [name, email, password],
-    (err, results) => {
-      if (err) {
-        console.error('Error during signup:', err);  // Log the error
-        return res.status(500).json({ success: false, message: 'Signup failed' });
+      'INSERT INTO users (name, email, password) VALUES (?, ?, ?)',
+      [name, email, password],
+      (err, results) => {
+          if (err) {
+              console.error('Error during signup:', err);
+              return res.status(500).json({ success: false, message: 'Signup failed' });
+          }
+          res.status(201).json({ success: true, message: 'Signup successful' });
       }
-      res.status(201).json({ success: true, message: 'Signup successful' });
-    }
   );
 });
 
