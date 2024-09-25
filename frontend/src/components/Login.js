@@ -1,4 +1,3 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +10,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/login', { email, password });
+      const response = await axios.post('https://hr-management-ps0b.onrender.com/login', { email, password }); // Updated URL
       if (response.data.success) {
         alert('Login successful!');
         localStorage.setItem('token', response.data.token);
@@ -22,13 +21,12 @@ function Login() {
       }
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        alert(error.response.data.message); // Shows specific error messages from server
+        alert(error.response.data.message);
       } else {
         alert('An error occurred. Please try again.');
       }
     }
   };
-  
 
   return (
     <div className="auth-container">
@@ -50,7 +48,7 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
-      <p>Don't have an account? <a href="/signup">Sign up here.</a></p>
+      <p>Don't have an account? <a href="https://hr-management-ps0b.onrender.com/signup">Sign up here.</a></p>
     </div>
   );
 }
