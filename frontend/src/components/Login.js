@@ -10,7 +10,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://hr-management-ps0b.onrender.com/login', { email, password }); // Updated URL
+      const response = await axios.post('https://hr-managements-system.netlify.app/login', { email, password }); // Updated URL
       if (response.data.success) {
         alert('Login successful!');
         localStorage.setItem('token', response.data.token);
@@ -48,7 +48,7 @@ function Login() {
         />
         <button type="submit">Login</button>
       </form>
-      <p>Don't have an account? <a href="https://hr-management-ps0b.onrender.com/signup">Sign up here.</a></p>
+      <p>Don't have an account? <a href="https://hr-managements-system.netlify.app/signup">Sign up here.</a></p>
     </div>
   );
 }
