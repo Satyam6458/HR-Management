@@ -24,7 +24,7 @@ function LeaveTypes() {
       console.error('Error fetching leave types:', error);
     }
   };
-
+//Serach Leave
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
